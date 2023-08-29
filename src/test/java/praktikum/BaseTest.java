@@ -1,29 +1,33 @@
 package praktikum;
-
-import java.io.File;
-import java.time.Duration;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.runners.Parameterized;
+import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
-
 
 public class BaseTest {
     protected WebDriver driver;
 
-    @Before
-    public void setup() {
+    public static final String mainUrl = "https://qa-scooter.praktikum-services.ru/";
+
+    @BeforeClass
+    public static void setupClass() {
         WebDriverManager.chromedriver().setup();
-        this.driver = new ChromeDriver();
+    }
+    @Before
+    public void setup()
+    {
+        driver = new ChromeDriver();
     }
 
     public void clickConfirmButton() {
         this.driver.findElement(By.xpath(".//button[@id='rcc-confirm-button']")).click();
+    }
+
+    public void openStartUrl(String mainUrl) {
+        driver.get(mainUrl);
     }
 
 

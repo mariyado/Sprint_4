@@ -35,7 +35,7 @@ public class OrderPage extends BaseTest {
     private By orderConfirmationButton = By.xpath(".//button[text() = 'Да']");
     private By formOrder = By.xpath(".//div[text()='Для кого самокат']");
     private By buttonOrderHeader = By.xpath(".//button[contains(@class, 'Button_Button__ra12g') and text() = 'Заказать']");
-    private By buttonOrderMiddle = By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM') and text() = 'Заказать']");
+    //private By buttonOrderMiddle = By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM') and text() = 'Заказать']");
     private By commentField = By.xpath(".//input[@placeholder = 'Комментарий для курьера']");
     private By colorScooter = By.id("black");
     private  By durationFieldElement = By.xpath(".//div[text() = 'двое суток']");
@@ -44,6 +44,7 @@ public class OrderPage extends BaseTest {
     private By dataField = By.xpath(".//input[@placeholder = '* Когда привезти самокат']");
     private By phoneField = By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
     private By stationField = By.xpath(".//input[@placeholder = '* Станция метро']");
+
     private By addressField = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
     private By lastNameField = By.xpath(".//input[@placeholder='* Фамилия']");
     private By nameField = By.xpath(".//input[@placeholder='* Имя']");
@@ -58,142 +59,157 @@ public class OrderPage extends BaseTest {
     public static void clickOrderConfirmationButton(WebDriver driver) {
         driver.findElement(By.xpath(".//button[text() = 'Да']")).click();
     }
+    public WebElement formOrder() {
+        return driver.findElement(By.xpath(".//div[text()='Для кого самокат']"));
+    }
+    public void checkFormOrder() {
+        assert formOrder().isDisplayed();
 
-    public void findFormOrder() {
-        this.driver.findElement(By.xpath(".//div[text()='Для кого самокат']"));
     }
 
     public void clickButtonHeader() {
-        this.driver.findElement(By.xpath(".//button[contains(@class, 'Button_Button__ra12g') and text() = 'Заказать']")).click();
+        driver.findElement(By.xpath(".//button[contains(@class, 'Button_Button__ra12g') and text() = 'Заказать']")).click();
     }
 
-    public void clickOrderButton() {
-        this.driver.findElement(By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM') and text() = 'Заказать']")).click();
-    }
 
     public void enteringComment(String comment) {
-        this.driver.findElement(By.xpath(".//input[@placeholder = 'Комментарий для курьера']")).sendKeys(new CharSequence[]{comment});
+        driver.findElement(By.xpath(".//input[@placeholder = 'Комментарий для курьера']")).sendKeys(new CharSequence[]{comment});
     }
 
     public void clickCommentField() {
-        this.driver.findElement(By.xpath(".//input[@placeholder = 'Комментарий для курьера']")).click();
+        driver.findElement(By.xpath(".//input[@placeholder = 'Комментарий для курьера']")).click();
     }
 
     public void selectColor() {
-        this.driver.findElement(By.id("black")).click();
+        driver.findElement(By.id("black")).click();
     }
 
     public void selectDuration() {
-        this.driver.findElement(By.xpath(".//div[text() = 'двое суток']")).click();
+        driver.findElement(By.xpath(".//div[text() = 'двое суток']")).click();
     }
 
     public void clickDuration() {
-        this.driver.findElement(By.xpath(".//div[contains(@class, 'Dropdown-control')]")).click();
+        driver.findElement(By.xpath(".//div[contains(@class, 'Dropdown-control')]")).click();
     }
 
     public void selectDate() {
-        this.driver.findElement(By.xpath(".//div[contains(@class, 'react-datepicker__day--today')]")).click();
+        driver.findElement(By.xpath(".//div[contains(@class, 'react-datepicker__day--today')]")).click();
     }
 
     public void clickDataField() {
-        this.driver.findElement(By.xpath(".//input[@placeholder = '* Когда привезти самокат']")).click();
+        driver.findElement(By.xpath(".//input[@placeholder = '* Когда привезти самокат']")).click();
     }
 
-    public void scrollNextButton(WebElement nextButton) {
-        ((JavascriptExecutor)this.driver).executeScript("arguments[0].scrollIntoView();", new Object[]{nextButton});
+    public WebElement orderMiddleButton() {
+        return driver.findElement(By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM') and text() = 'Заказать']"));
     }
+
+    public WebElement nextButton() {
+        return driver.findElement(By.xpath(".//button[text() = 'Далее']"));
+    }
+    public void scrollNextButton() {
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", new Object[]{nextButton()});
+    }
+
 
     public void enteringPhone(String phone) {
-        this.driver.findElement(By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']")).sendKeys(new CharSequence[]{phone});
+        driver.findElement(By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']")).sendKeys(new CharSequence[]{phone});
     }
 
     public void clickPhoneField() {
-        this.driver.findElement(By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']")).click();
-    }
-
-    public void scrollStationElement(WebElement stationElement) {
-        ((JavascriptExecutor)this.driver).executeScript("arguments[0].scrollIntoView();", new Object[]{stationElement});
+        driver.findElement(By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']")).click();
     }
 
     public void clickStationField() {
-        this.driver.findElement(By.xpath(".//input[@placeholder = '* Станция метро']")).click();
+        driver.findElement(By.xpath(".//input[@placeholder = '* Станция метро']")).click();
     }
 
     public void enteringAddress(String address) {
-        this.driver.findElement(By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']")).sendKeys(new CharSequence[]{address});
+        driver.findElement(By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']")).sendKeys(new CharSequence[]{address});
     }
 
     public void clickAddressField() {
-        this.driver.findElement(By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']")).click();
+        driver.findElement(By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']")).click();
     }
 
     public void enteringLastNameField(String lastName) {
-        this.driver.findElement(By.xpath(".//input[@placeholder='* Фамилия']")).sendKeys(new CharSequence[]{lastName});
+        driver.findElement(By.xpath(".//input[@placeholder='* Фамилия']")).sendKeys(new CharSequence[]{lastName});
     }
 
     public void clickLastNameField() {
-        this.driver.findElement(By.xpath(".//input[@placeholder='* Фамилия']")).click();
+        driver.findElement(By.xpath(".//input[@placeholder='* Фамилия']")).click();
     }
 
     public void enteringName(String firstName) {
-        this.driver.findElement(By.xpath(".//input[@placeholder='* Имя']")).sendKeys(new CharSequence[]{firstName});
+        driver.findElement(By.xpath(".//input[@placeholder='* Имя']")).sendKeys(new CharSequence[]{firstName});
     }
 
     public void clickNameField() {
-        this.driver.findElement(By.xpath(".//input[@placeholder='* Имя']")).click();
+        driver.findElement(By.xpath(".//input[@placeholder='* Имя']")).click();
     }
 
     public void isStatusButton() {
-        WebElement statusButton = this.driver.findElement(By.xpath(".//button[text() = 'Посмотреть статус']"));
-        assert statusButton.isDisplayed();
+        assert statusButton().isDisplayed();
     }
 
-    private void backToMainPage() {
-        driver.findElement(By.xpath(".//img[@alt= 'Scooter']"));
+    public WebElement statusButton() {
+        return driver.findElement(By.xpath(".//button[text() = 'Посмотреть статус']"));
+    }
+    public void scrollToOrderMiddleButton() {
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", new Object[]{orderMiddleButton()});
     }
 
+    public WebElement stationElement() {
+        return driver.findElement(By.xpath(".//button[@value = '5']"));
+    }
 
+    public void scrollStationElement() {
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", new Object[]{stationElement()});
+    }
 
-
-    @Test
-    public void clickOrderButtonInHeader() {
-        this.driver.get("https://qa-scooter.praktikum-services.ru/");
-        clickButtonHeader();
-        findFormOrder();
-        backToMainPage();
-
-
-        clickConfirmButton();
-        WebElement orderMiddleButton = this.driver.findElement(By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM') and text() = 'Заказать']"));
-        ((JavascriptExecutor)this.driver).executeScript("arguments[0].scrollIntoView();", new Object[]{orderMiddleButton});
-        orderMiddleButton.click();
-        findFormOrder();
-
-
+    public void fillForm() {
         clickNameField();
-        enteringName(this.firstName);
+        enteringName(firstName);
         clickLastNameField();
-        enteringLastNameField(this.lastName);
+        enteringLastNameField(lastName);
         clickAddressField();
-        enteringAddress(this.address);
+        enteringAddress(address);
         clickStationField();
-        WebElement stationElement = this.driver.findElement(By.xpath(".//button[@value = '5']"));
-        scrollStationElement(stationElement);
-        stationElement.click();
+
+        scrollStationElement();
+        stationElement().click();
         clickPhoneField();
-        enteringPhone(this.phone);
-        WebElement nextButton = this.driver.findElement(By.xpath(".//button[text() = 'Далее']"));
-        scrollNextButton(nextButton);
-        nextButton.click();
+        enteringPhone(phone);
+
+        scrollNextButton();
+        nextButton().click();
+
         clickDataField();
         selectDate();
         clickDuration();
         selectDuration();
         selectColor();
         clickCommentField();
-        enteringComment(this.orderComment);
-        clickOrderButton();
-        clickOrderConfirmationButton(this.driver);
+        enteringComment(orderComment);
+    }
+
+
+    @Test
+    public void creatingOrder() {
+        openStartUrl(mainUrl);
+
+        clickConfirmButton();
+        scrollToOrderMiddleButton();
+        orderMiddleButton().click();
+        checkFormOrder();
+
+        fillForm();
+
+        orderMiddleButton().click();
+        clickOrderConfirmationButton(driver);
         isStatusButton();
+        statusButton().click();
+        clickButtonHeader();
+        checkFormOrder();
     }
 }
